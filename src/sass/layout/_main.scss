@@ -1,0 +1,33 @@
+main {
+  height: 500px;
+  max-height: 724px;
+  overflow-y: scroll;
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+
+  section {
+    &.content {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-content: stretch;
+      align-items: center;
+      overflow: hidden;
+      height: 100%;
+
+      img {
+        flex: 0 1 auto;
+        align-self: center;
+        text-align: center;
+        height: 100%;
+        cursor: pointer;
+      }
+    }
+  }
+}

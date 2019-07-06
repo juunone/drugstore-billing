@@ -1,0 +1,47 @@
+{
+  "name": "Colavo-Lab",
+  "description": "Colavo-Lab billing",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://juunone.github.io/colavolab-test",
+  "proxy": "https://us-central1-colavolab.cloudfunctions.net",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "gh-pages": "^2.0.1",
+    "moment": "^2.24.0",
+    "node-sass": "^4.11.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-redux": "^6.0.1",
+    "react-scripts": "2.1.8",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "scss": "^0.2.4"
+  },
+  "devDependencies": {
+    "redux-logger": "^3.0.6",
+    "rimraf": "^2.6.3",
+    "sass": "^1.17.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
+    "clean": "rimraf build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

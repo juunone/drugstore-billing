@@ -1,0 +1,17 @@
+footer {
+  .footer__wrapper {
+    padding: 1em;
+    border-top: 1px solid #ddd;
+    .total {
+      .total__text {
+        float: left;
+        font-size: 0.8em;
+        color: #888;
+      }
+      .total__price {
+        float: right;
+        font-size: 1.2em;
+      }
+    }
+  }
+}

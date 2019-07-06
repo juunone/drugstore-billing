@@ -1,0 +1,19 @@
+header {
+  text-align: center;
+  margin: 1.5em 0;
+  border-bottom: 1px dashed #ddd;
+
+  .header__wrapper {
+    font-size: 0.8rem;
+
+    .userName {
+      color: #333;
+      margin-bottom: 0.5em;
+    }
+
+    .date {
+      color: #888;
+      font-size: 0.8rem;
+    }
+  }
+}
