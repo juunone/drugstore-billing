@@ -1,9 +1,32 @@
 import * as types from './ActionTypes'
 
-export const selectNext = (is_next) => {
+export const getHeaderItems = (headerType) => {
   return{
-    type:types.NEXT,
-    is_next: is_next
+    type:types.HEADER_TYPE,
+    headerType: headerType
+  }
+}
+
+export const selectAction = (key,actionType) => {
+  return{
+    type:types.SELECT_ACTION,
+    key: key,
+    actionType: actionType
+  }
+}
+
+export const completeSelected = (headerType) => {
+  return{
+    type:types.COMPLETE_SELECTED,
+    headerType: headerType
+  }
+}
+
+export const modifyCount = (key,val) => {
+  return{
+    type:types.MODIFY_COUNT,
+    key: key,
+    val:val
   }
 }
 

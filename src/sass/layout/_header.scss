@@ -1,14 +1,31 @@
 header {
   text-align: center;
   margin: 1.5em 0;
-  border-bottom: 1px dashed #ddd;
+  padding: 0 0.7em;
 
   .header__wrapper {
     font-size: 0.8rem;
+    border-bottom: 1px dashed #ddd;
+
+    &.br-b-n {
+      border-bottom: none;
+    }
+
+    .ico {
+      float: left;
+      cursor: pointer;
+    }
+
+    h2 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-block;
+    }
 
     .userName {
       color: #333;
       margin-bottom: 0.5em;
+      font-weight: 600;
     }
 
     .date {
