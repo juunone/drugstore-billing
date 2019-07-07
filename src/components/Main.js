@@ -101,8 +101,8 @@ class Main extends Component{
         return arr;
       }
       const SURGERY = this.props.selectedSurgery.map((v,i) => {
-        const PRICE_FORMATTING = v.price.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
-        const DISCOUNT_PRICE_FORMATTING = v.discountPrice && v.discountPrice.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
+        const PRICE_FORMATTING = v.price.toLocaleString(this.props.currency, { minimumFractionDigits: 0 });
+        const DISCOUNT_PRICE_FORMATTING = v.discountPrice && v.discountPrice.toLocaleString(this.props.currency, { minimumFractionDigits: 0 });
         return (
           <section className={'cursor-none'} key={i}>
             <div className={'items__wrapper cb_clear'}>
@@ -150,7 +150,7 @@ class Main extends Component{
         if (Object.keys(PRODUCTS).length) {
           const ITEMS = PRODUCTS.items;
           const MAKE_ARRAY = Object.keys(ITEMS).map(k => {
-            const PRICE_FORMATTING = ITEMS[k].price.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
+            const PRICE_FORMATTING = ITEMS[k].price.toLocaleString(this.props.currency, { minimumFractionDigits: 0 });
             return (
               <section className={'cb_clear'} key={k} onClick={(()=>{this._selectAction(k,type)})}>
                 <div className={'items__wrapper'}>

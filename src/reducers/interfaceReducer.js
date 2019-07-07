@@ -13,6 +13,7 @@ import {
 } from '../actions/ActionTypes';
 
 const intialState = {
+  currency:'ko-KR',
   products: {},
   loading: false,
   error: null,
@@ -68,8 +69,8 @@ export default (state = intialState, action) => {
         return SELECT_STATE;
       case COMPLETE_SELECTED:
         const COMPLETE_STATE = COPY(state);
-        COMPLETE_STATE.totalPrice = 0;
         if(action.headerType === 'surgery'){          
+          COMPLETE_STATE.totalPrice = 0;
           const totalSurgeryComplete = Object.keys(COMPLETE_STATE.products.items).reduce((results, v) => {
             if(COMPLETE_STATE.products.items[v].isSelected){
               results.push(COMPLETE_STATE.products.items[v]);
@@ -149,6 +150,13 @@ export default (state = intialState, action) => {
       case FETCH_PRODUCTS_SUCCESS:        
         const ITEMS = action.payload.products.items;
         const DISCOUNTS = action.payload.products.discounts;
+        let CURRENCY_CODE = state.currency;
+        if(action.payload.products.currency_code === 'KRW'){
+          CURRENCY_CODE = 'ko-KR';  
+        }else if(action.payload.products.currency_code === 'USD'){
+          CURRENCY_CODE = 'en-US';
+        }
+
         if(Object.keys(ITEMS).length){
           Object.keys(ITEMS).map(v => {
             if(ITEMS[v].price === 0) return delete ITEMS[v];
@@ -181,6 +189,7 @@ export default (state = intialState, action) => {
 
         return {
           ...state,
+          currency: CURRENCY_CODE,
           loading: false,
           products: action.payload.products
         };

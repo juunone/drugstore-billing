@@ -19,7 +19,7 @@ class Footer extends Component{
   _renderFooterType(type) {      
     switch(type){
       case 'main':          
-        const PRICE_FORMATTING = this.props.totalPrice.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
+        const PRICE_FORMATTING = this.props.totalPrice.toLocaleString(this.props.currency, { minimumFractionDigits: 0 });
         return (
           <div className={'footer__wrapper'}>
             <div className={'total cb_clear'}>
