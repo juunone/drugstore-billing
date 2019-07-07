@@ -194,7 +194,7 @@ class Main extends Component{
 
   render(){
     if (this.props.error) {
-      return <main><section className={'noItems'}>Error! {this.props.error.message}</section></main>;      
+      return <main><section className={'noItems'}>네트워크 오류입니다.<br/><br/>잠시후에 다시 시도해주세요. {this.props.error.message}</section></main>;
     }
 
     if (this.props.loading) {
