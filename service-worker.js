@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/colavolab-billing/precache-manifest.9632d305b75d74e2e2acf107189961f9.js"
+  "/colavolab-billing/precache-manifest.f42773de6618d79fabd2c5c6509dc05a.js"
 );
 
 workbox.clientsClaim();
