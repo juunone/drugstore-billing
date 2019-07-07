@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import Button from './Button';
 
 class Main extends Component{
   constructor(props) {
@@ -26,7 +29,53 @@ class Main extends Component{
     this.props._handleModifyCount(key, VALUE);
   }
 
+  _removeSelectedSurgery(key) {
+    confirmAlert({
+      title: '정말 삭제하시겠습니까?',
+      message: '',
+      closeOnEscape: true,
+      closeOnClickOutside: true,
+      buttons: [
+        {
+          label: 'YES',
+          onClick: () => this.props._handleRemoveSelectedSurgery(key)
+        },
+        {
+          label: 'NO'
+        }
+      ]
+    });
+  }
+
+  _modifySelectedDiscount(v,i) {
+    const makeDatalist = () => {
+      return this.props.selectedSurgery.map((v,i) => {
+        if(v.isDiscount === false) return <option key={i} value={v.name}>{v.price}</option>;        
+      });
+    }
+    confirmAlert({
+      closeOnEscape: true,
+      closeOnClickOutside: true,
+      customUI: ({ onClose }) => {
+        return (
+          <section className={'discount__targetList'}>
+            <h2>{v.name}</h2>
+            <input placeholder={'검색'} list="discountTargetSurgeries" />
+            <datalist id="discountTargetSurgeries">
+              {makeDatalist()}
+            </datalist>
+            <div>
+              {<Button type="surgery p-h-3" text="삭제" />}
+              {<Button type="discount p-h-3" text="적용" />}
+            </div>
+          </section>
+        )
+      }      
+    });
+  }
+
   _makeList() {
+    let results = [];
     if(this.props.selectedSurgery.length){
       const counts = (total) => {
         let arr = [];
@@ -35,20 +84,45 @@ class Main extends Component{
         }
         return arr;
       }
-      return this.props.selectedSurgery.map((v,i) => {
+      const SURGERY = this.props.selectedSurgery.map((v,i) => {
+        const PRICE_FORMATTING = v.price.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
         return (
-          <section className={'cursor-none'} key={i} onChange={((e)=>{this._modifyCount(i,e)})} value={v.count}>
+          <section className={'cursor-none'} key={i}>
             <div className={'items__wrapper cb_clear'}>
               <div className={'name'}><h2>{v.name}</h2></div>
-              <span>{v.price}원</span>              
-              <select>{counts(v.totalCount)}</select>
+              <span>{PRICE_FORMATTING}원</span>              
+              <div className={'items__wrapper__surgery--buttons cb_clear'}>
+                <select onChange={((e)=>{this._modifyCount(i,e)})} value={v.count}>{counts(v.totalCount)}</select>
+                <button className={'delete-surgery'} onClick={(()=>{this._removeSelectedSurgery(i)})}>삭제</button>
+              </div>
             </div>            
           </section>
         )
       })
-    }else{
-      return <section className={'noItems cursor-none'}>시술을 선택해주세요.</section>
+      results.push(SURGERY);
     }
+
+    if(this.props.selectedDiscount.length){
+      const DISCOUNT = this.props.selectedDiscount.map((v,i) => {
+        const PRICE = Number(v.rate * 100000).toFixed();
+        const RATE = Number(v.rate * 100).toFixed();
+        const PRICE_FORMATTING = Number(PRICE).toLocaleString(navigator.language, { minimumFractionDigits: 0 });
+        return (
+          <section className={'cursor-none'} key={i}>
+            <div className={'items__wrapper cb_clear'}>
+              <div className={'name'}><h2>{v.name}</h2></div>
+              <span className={'discountPercent'}>-{PRICE_FORMATTING}원({RATE}%)</span>              
+              <div className={'items__wrapper__surgery--buttons cb_clear'}>
+                <button className={'modify-discount'} onClick={(()=>{this._modifySelectedDiscount(v,i)})}>수정</button>
+              </div>
+            </div>            
+          </section>
+        )
+      })
+      results.push(DISCOUNT);
+    }
+
+    return results;
   }
 
   _renderProducts(type) {
@@ -60,12 +134,13 @@ class Main extends Component{
         if (Object.keys(PRODUCTS).length) {
           const ITEMS = PRODUCTS.items;
           const MAKE_ARRAY = Object.keys(ITEMS).map(k => {
+            const PRICE_FORMATTING = ITEMS[k].price.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
             return (
               <section className={'cb_clear'} key={k} onClick={(()=>{this._selectAction(k,type)})}>
                 <div className={'items__wrapper'}>
                   <small>{ITEMS[k].category}</small>
                   <div className={'name'}><h2>{ITEMS[k].name}</h2></div>
-                  <span>{ITEMS[k].price}원</span>
+                  <span>{PRICE_FORMATTING}원</span>
                   <i>{ITEMS[k].isSelected && <FontAwesomeIcon icon={faCheck} />}</i>
                 </div>            
               </section>
@@ -79,11 +154,12 @@ class Main extends Component{
         if (Object.keys(PRODUCTS).length) {
           const DISCOUNTS = PRODUCTS.discounts;
           const MAKE_ARRAY = Object.keys(DISCOUNTS).map(k => {
+            const RATE = Number(DISCOUNTS[k].rate * 100).toFixed();
             return (
               <section className={'cb_clear'} key={k} onClick={(()=>{this._selectAction(k,type)})}>
                 <div className={'items__wrapper'}>
                   <div className={'name'}><h2>{DISCOUNTS[k].name}</h2></div>
-                  <span className={'discountPercent'}>{Number(DISCOUNTS[k].rate * 100000).toFixed()}원</span>
+                  <span className={'discountPercent'}>{RATE}% 할인</span>              
                   <i>{DISCOUNTS[k].isSelected && <FontAwesomeIcon icon={faCheck} />}</i>
                 </div>            
               </section>
@@ -106,7 +182,7 @@ class Main extends Component{
     }
 
     if (this.props.loading) {
-      return <main><section className={'noItems'}>Loading...</section></main>;
+      return <main><section className={'noItems'}>Loading...<FontAwesomeIcon icon={faSpinner} spin={true} /></section></main>;
     }
     
     return(
@@ -120,7 +196,8 @@ class Main extends Component{
 const mapDispatchToProps = dispatch => ({
     _handleFetchProducts: () => { dispatch(actions.fetchProducts()) },
     _handleSelectAction: (key,type) => { dispatch(actions.selectAction(key,type)) },
-    _handleModifyCount: (key,val) => { dispatch(actions.modifyCount(key,val)) }
+    _handleModifyCount: (key,val) => { dispatch(actions.modifyCount(key,val)) },
+    _handleRemoveSelectedSurgery: (key) => { dispatch(actions.removeSelectedSurgery(key)) }
 })
 
 const mapStateToProps = (state) => {

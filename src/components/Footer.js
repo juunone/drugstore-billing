@@ -15,20 +15,21 @@ class Footer extends Component{
   _renderFooterType(type) {      
     switch(type){
       case 'main':          
+        const PRICE_FORMATTING = this.props.totalPrice.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
         return (
           <div className={'footer__wrapper'}>
             <div className={'total cb_clear'}>
               <span className={'total__text'}>합계</span>
-              <strong className={'total__price'}>{this.props.totalPrice}원</strong>
+              <strong className={'total__price'}>{PRICE_FORMATTING}원</strong>
             </div>
-            <div><Button type="next" text="다음" /></div>
+            <div><Button type="next" text="다음" totalPrice={this.props.totalPrice} /></div>
           </div>
         );
       case 'surgery':
       case 'discount':
         return (
           <div className={'footer__wrapper select'}>
-            <p>{type === 'surgery' ? '서비스를 선택하세요(3개 이상)' : '할인을 선택하세요'}</p>
+            <p>{type === 'surgery' ? '서비스를 3개 이상 선택해주세요.' : '할인을 선택하세요.'}</p>
             <div>
               <Button 
                 type="next complete" 
@@ -47,7 +48,7 @@ class Footer extends Component{
               <span className={'total__text'}>합계</span>
               <strong className={'total__price'}>{this.props.totalPrice}원</strong>
             </div>
-            <div><Button type="next" text="다음" /></div>
+            <div><Button type="next" text="다음" totalPrice={this.props.totalPrice} /></div>
           </div>
         );
     }

@@ -30,6 +30,13 @@ export const modifyCount = (key,val) => {
   }
 }
 
+export const removeSelectedSurgery = (key) => {
+  return{
+    type:types.REMOVE_SELECTED_SURGERY,
+    key: key
+  }
+}
+
 export const fetchProductsStart = () => {
   return{
     type: types.FETCH_PRODUCTS_START

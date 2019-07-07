@@ -3,6 +3,7 @@ import {
   SELECT_ACTION,
   COMPLETE_SELECTED,
   MODIFY_COUNT,
+  REMOVE_SELECTED_SURGERY,
   FETCH_PRODUCTS_START,
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILURE
@@ -56,7 +57,10 @@ export default (state = intialState, action) => {
         const COMPLETE_STATE = COPY(state);
         if(action.headerType === 'surgery'){          
           const totalSurgeryComplete = Object.keys(COMPLETE_STATE.products.items).reduce((results, v) => {
-            if(COMPLETE_STATE.products.items[v].isSelected) results.push(COMPLETE_STATE.products.items[v]);
+            if(COMPLETE_STATE.products.items[v].isSelected){
+              results.push(COMPLETE_STATE.products.items[v]);
+              COMPLETE_STATE.totalPrice = Number(COMPLETE_STATE.totalPrice) + Number(COMPLETE_STATE.products.items[v].price);
+            }
             return results;
           }, []);
 
@@ -77,6 +81,11 @@ export default (state = intialState, action) => {
       const COUNT_STATE = COPY(state);
       COUNT_STATE.selectedSurgery[action.key].count = Number(action.val);
         return COUNT_STATE;
+      case REMOVE_SELECTED_SURGERY:
+        const REMOVE_SELECTED_SURGERY_STATE = COPY(state);
+        console.log(action.key);
+        REMOVE_SELECTED_SURGERY_STATE.selectedSurgery.splice(action.key, 1);
+        return REMOVE_SELECTED_SURGERY_STATE;
       case FETCH_PRODUCTS_START:
         return {
           ...state,
@@ -88,7 +97,10 @@ export default (state = intialState, action) => {
         const DISCOUNTS = action.payload.products.discounts;
         if(Object.keys(ITEMS).length){
           Object.keys(ITEMS).map(v => {
+            if(ITEMS[v].price === 0) return delete ITEMS[v];
+            
             ITEMS[v].isSelected = false;
+            ITEMS[v].isDiscount = false;
             ITEMS[v].totalCount = 10;
                         
             if(ITEMS[v].name.indexOf('컷') !== -1){

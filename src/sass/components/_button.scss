@@ -5,8 +5,13 @@ button {
   border: none;
   font-size: 0.8rem;
 
-  &:disabled{
-    filter: grayscale(100%); 
+  &.p-h-3 {
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+  &:disabled {
+    filter: grayscale(100%);
     cursor: not-allowed;
   }
 
