@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
-  "homepage": "https://juunone.github.io/colavolab-test",
+  "homepage": "https://juunone.github.io/colavolab-billing",
   "proxy": "https://us-central1-colavolab.cloudfunctions.net",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",

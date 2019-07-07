@@ -49,6 +49,17 @@ main {
         color: #333;
         letter-spacing: 0.5px;
 
+        &.strike {
+          text-decoration: line-through;
+          color: #888;
+        }
+
+        &.discountPrice {
+          display: block;
+          color: #ff2b73;
+          font-weight: 600;
+        }
+
         &.discountPercent {
           color: #f797b9;
         }

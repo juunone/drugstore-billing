@@ -11,6 +11,10 @@ class Footer extends Component{
   _completeSelected = (headerType) => {  
     this.props._handleCompleteSelected(headerType);
   }
+  
+  _purchse = () => {
+    this.props._handlePurchase();
+  }
 
   _renderFooterType(type) {      
     switch(type){
@@ -22,7 +26,7 @@ class Footer extends Component{
               <span className={'total__text'}>합계</span>
               <strong className={'total__price'}>{PRICE_FORMATTING}원</strong>
             </div>
-            <div><Button type="next" text="다음" totalPrice={this.props.totalPrice} /></div>
+            <div><Button type="next" text="결제" click={this._purchse} totalPrice={this.props.totalPrice} /></div>
           </div>
         );
       case 'surgery':
@@ -34,7 +38,7 @@ class Footer extends Component{
               <Button 
                 type="next complete" 
                 text="완료"
-                totalSelected={type === 'surgery' ? this.props.totalSelectedSurgery : this.props.totalSelectedDiscount} 
+                totalSelected={type === 'surgery' ? this.props.totalSelectedSurgery : undefined} 
                 click={this._completeSelected}
                 headerType={type}
               />
@@ -48,7 +52,7 @@ class Footer extends Component{
               <span className={'total__text'}>합계</span>
               <strong className={'total__price'}>{this.props.totalPrice}원</strong>
             </div>
-            <div><Button type="next" text="다음" totalPrice={this.props.totalPrice} /></div>
+            <div><Button type="next" text="결제" click={this._purchse} totalPrice={this.props.totalPrice} /></div>
           </div>
         );
     }
@@ -65,6 +69,7 @@ class Footer extends Component{
 
 const mapDispatchToProps = dispatch => ({
   _handleCompleteSelected: (headerType) => { dispatch(actions.completeSelected(headerType)) },
+  _handlePurchase: () => { dispatch(actions.purchase()) }
 })
 
 const mapStateToProps = (state) => {

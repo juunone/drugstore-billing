@@ -37,6 +37,27 @@ export const removeSelectedSurgery = (key) => {
   }
 }
 
+export const applyDiscount = (index, targetName) => {
+  return{
+    type:types.APPLY_DISCOUNT,
+    index: index,
+    targetName: targetName
+  }
+}
+
+export const deleteSelectedDiscount = (index) => {
+  return{
+    type:types.DELETE_SELECTED_DISCOUNT,
+    index: index
+  }
+}
+
+export const purchase = () => {
+  return{
+    type:types.PURCHASE
+  }
+}
+
 export const fetchProductsStart = () => {
   return{
     type: types.FETCH_PRODUCTS_START

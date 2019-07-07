@@ -4,6 +4,9 @@ import {
   COMPLETE_SELECTED,
   MODIFY_COUNT,
   REMOVE_SELECTED_SURGERY,
+  APPLY_DISCOUNT,
+  DELETE_SELECTED_DISCOUNT,
+  PURCHASE,
   FETCH_PRODUCTS_START,
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILURE
@@ -19,7 +22,8 @@ const intialState = {
   totalSelectedSurgery:0,
   totalSelectedDiscount:0,
   selectedSurgery:[],
-  selectedDiscount:[]
+  selectedDiscount:[],
+  isPurchasing:false
 };
 
 const COPY = (obj) => {
@@ -28,6 +32,15 @@ const COPY = (obj) => {
   }
 
   return null;
+}
+
+const CALC_TOTAL_PRICE = (item) => {
+  let calcPrice = 0;
+  item.map(v => {
+    if(v.discountPrice) calcPrice += (Number(v.discountPrice) * Number(v.count));
+    else calcPrice += (Number(v.price) * Number(v.count));
+  });
+  return calcPrice;
 }
 
 export default (state = intialState, action) => { 
@@ -55,19 +68,25 @@ export default (state = intialState, action) => {
         return SELECT_STATE;
       case COMPLETE_SELECTED:
         const COMPLETE_STATE = COPY(state);
+        COMPLETE_STATE.totalPrice = 0;
         if(action.headerType === 'surgery'){          
           const totalSurgeryComplete = Object.keys(COMPLETE_STATE.products.items).reduce((results, v) => {
             if(COMPLETE_STATE.products.items[v].isSelected){
               results.push(COMPLETE_STATE.products.items[v]);
               COMPLETE_STATE.totalPrice = Number(COMPLETE_STATE.totalPrice) + Number(COMPLETE_STATE.products.items[v].price);
+              COMPLETE_STATE.products.items[v].isSelected = false;
             }
+            if(COMPLETE_STATE.selectedDiscount.length)COMPLETE_STATE.selectedDiscount = [];
             return results;
           }, []);
 
           if(totalSurgeryComplete.length) COMPLETE_STATE.selectedSurgery = totalSurgeryComplete;          
         }else if(action.headerType === 'discount'){
           const totalDiscountComplete = Object.keys(COMPLETE_STATE.products.discounts).reduce((results, v) => {
-            if(COMPLETE_STATE.products.discounts[v].isSelected) results.push(COMPLETE_STATE.products.discounts[v]);
+            if(COMPLETE_STATE.products.discounts[v].isSelected){
+              results.push(COMPLETE_STATE.products.discounts[v]);
+              COMPLETE_STATE.products.discounts[v].isSelected = false;
+            }
             return results;
           }, []);
 
@@ -80,12 +99,47 @@ export default (state = intialState, action) => {
       case MODIFY_COUNT:        
       const COUNT_STATE = COPY(state);
       COUNT_STATE.selectedSurgery[action.key].count = Number(action.val);
+      COUNT_STATE.totalPrice = CALC_TOTAL_PRICE(COUNT_STATE.selectedSurgery);
         return COUNT_STATE;
       case REMOVE_SELECTED_SURGERY:
         const REMOVE_SELECTED_SURGERY_STATE = COPY(state);
-        console.log(action.key);
+        REMOVE_SELECTED_SURGERY_STATE.selectedDiscount.map(v => {
+          if(v.target === REMOVE_SELECTED_SURGERY_STATE.selectedSurgery[action.key].name){
+            v.target = undefined;
+          }
+        });
         REMOVE_SELECTED_SURGERY_STATE.selectedSurgery.splice(action.key, 1);
+        REMOVE_SELECTED_SURGERY_STATE.totalPrice = CALC_TOTAL_PRICE(REMOVE_SELECTED_SURGERY_STATE.selectedSurgery);
         return REMOVE_SELECTED_SURGERY_STATE;
+      case APPLY_DISCOUNT:
+        const APPLY_DISCOUNT_STATE = COPY(state);
+        const RATE = Number(APPLY_DISCOUNT_STATE.selectedDiscount[action.index].rate);
+        APPLY_DISCOUNT_STATE.selectedSurgery.filter(v => {
+          if (v.name === action.targetName) {
+            const CALC_PRICE = Number(v.price) * Number(v.count);
+            v.discountPrice = CALC_PRICE - (CALC_PRICE * RATE);
+            v.discountName = APPLY_DISCOUNT_STATE.selectedDiscount[action.index].name;
+            APPLY_DISCOUNT_STATE.selectedDiscount[action.index].target = v.name;
+          }
+        });
+        APPLY_DISCOUNT_STATE.totalPrice = CALC_TOTAL_PRICE(APPLY_DISCOUNT_STATE.selectedSurgery);
+        return APPLY_DISCOUNT_STATE;
+      case DELETE_SELECTED_DISCOUNT:
+        const DELETE_SELECTED_DISCOUNT_STATE = COPY(state);
+        DELETE_SELECTED_DISCOUNT_STATE.selectedSurgery.map(v => {
+          if(v.discountName === DELETE_SELECTED_DISCOUNT_STATE.selectedDiscount[action.index].name){
+            v.discountName = undefined;
+            v.discountPrice = undefined;
+          }
+        })
+        DELETE_SELECTED_DISCOUNT_STATE.selectedDiscount.splice(action.index, 1);
+        DELETE_SELECTED_DISCOUNT_STATE.totalPrice = CALC_TOTAL_PRICE(DELETE_SELECTED_DISCOUNT_STATE.selectedSurgery);
+        return DELETE_SELECTED_DISCOUNT_STATE;
+      case PURCHASE:
+        return {
+          ...state,
+          isPurchasing:true
+        };
       case FETCH_PRODUCTS_START:
         return {
           ...state,

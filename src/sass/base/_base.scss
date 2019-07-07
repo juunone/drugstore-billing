@@ -44,3 +44,14 @@ button {
 .flr {
   float: right !important;
 }
+
+.purchase__process {
+  text-align: center;
+  padding: 5em 2em;
+  line-height: 5;
+  background: #fdf1f5;
+
+  p {
+    color: #ed9ebd;
+  }
+}

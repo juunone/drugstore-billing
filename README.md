@@ -1,32 +1,42 @@
-# Colavo-Lab Billing
+<h2 align="center">colavo-lab billing 💸<br />welcome! 👋</h2>
+<p>
+  <img src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/juunone/colavolab-billing">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
+  </a>
+</p>
 
-## Description
+> Colavo-lab billing
+- use create-react-app, redux, redux-thunk , sass
+- deploy with gh-pages
 
-- use create-react-app, redux , sass
-- deploy gh-pages with git/repository
+### 🏠 [Homepage](https://juunone.github.io/colavolab-billing)
 
-## Demo
+## Install
 
-- [Link](https://juunone.github.io/colavolab-billing/) 
-
-## Project Tree 
-
+```sh
+yarn install
 ```
+
+## Usage
+
+```sh
+yarn start
+```
+
+## Project Tree
+```sh
 |-- public
     |-- index.html
 |-- src
     |-- actions
         |-- ActionTypes.js
         |-- index.js
-    |-- assets
-        |-- my_piece.svg
-        |-- piece.svg
     |-- components
         |-- App.js
-        |-- Footer.js
-        |-- Interface.js
-        |-- Header.js
         |-- Button.js
+        |-- Footer.js
+        |-- Header.js
         |-- Main.js
     |-- reducers
         |-- interfaceReducer.js
@@ -46,14 +56,14 @@
     |-- store.js
 |-- package.json
 |-- READEME.md
-|-- index.html
 ```
 
-## Development
+## Author
 
-```
-# have global yarn
+👤 **Juunone**
 
-yarn install
-yarn start
-```
+* Github: [@juunone](https://github.com/juunone)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/juunone/colavolab-billing/issues).

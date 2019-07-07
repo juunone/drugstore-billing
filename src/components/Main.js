@@ -47,12 +47,28 @@ class Main extends Component{
     });
   }
 
+  _applyDiscount = (obj) => {
+    const TARGET_NAME = document.getElementById('discountTarget').value;
+
+    const isExist = this.props.selectedDiscount.filter(v => v.target === TARGET_NAME);
+    if(isExist.length) return alert('이미 할인 적용된 상품입니다.');
+
+    this.props._handleApplyDiscount(obj.i, TARGET_NAME);
+    obj.onClose();
+  }
+
+  _deleteSelectedDiscount = (obj) => {
+    this.props._handleDeleteSelectedDiscount(obj.i);
+    obj.onClose();
+  }
+
   _modifySelectedDiscount(v,i) {
     const makeDatalist = () => {
       return this.props.selectedSurgery.map((v,i) => {
         if(v.isDiscount === false) return <option key={i} value={v.name}>{v.price}</option>;        
       });
     }
+
     confirmAlert({
       closeOnEscape: true,
       closeOnClickOutside: true,
@@ -60,13 +76,13 @@ class Main extends Component{
         return (
           <section className={'discount__targetList'}>
             <h2>{v.name}</h2>
-            <input placeholder={'검색'} list="discountTargetSurgeries" />
+            <input id={'discountTarget'} defaultValue={v.target} placeholder={'검색'} list="discountTargetSurgeries" />
             <datalist id="discountTargetSurgeries">
               {makeDatalist()}
             </datalist>
             <div>
-              {<Button type="surgery p-h-3" text="삭제" />}
-              {<Button type="discount p-h-3" text="적용" />}
+              {<Button type="surgery p-h-3" text="삭제" headerType={{onClose,i}} click={this._deleteSelectedDiscount} />}
+              {<Button type="discount p-h-3" text="적용" headerType={{onClose,i}} click={this._applyDiscount} />}
             </div>
           </section>
         )
@@ -86,11 +102,13 @@ class Main extends Component{
       }
       const SURGERY = this.props.selectedSurgery.map((v,i) => {
         const PRICE_FORMATTING = v.price.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
+        const DISCOUNT_PRICE_FORMATTING = v.discountPrice && v.discountPrice.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
         return (
           <section className={'cursor-none'} key={i}>
             <div className={'items__wrapper cb_clear'}>
               <div className={'name'}><h2>{v.name}</h2></div>
-              <span>{PRICE_FORMATTING}원</span>              
+              <span className={DISCOUNT_PRICE_FORMATTING && 'strike'}>{PRICE_FORMATTING}원</span>              
+              {DISCOUNT_PRICE_FORMATTING && <span className={'discountPrice'}>{DISCOUNT_PRICE_FORMATTING}원 ({v.discountName} 이벤트 적용)</span>}
               <div className={'items__wrapper__surgery--buttons cb_clear'}>
                 <select onChange={((e)=>{this._modifyCount(i,e)})} value={v.count}>{counts(v.totalCount)}</select>
                 <button className={'delete-surgery'} onClick={(()=>{this._removeSelectedSurgery(i)})}>삭제</button>
@@ -104,16 +122,14 @@ class Main extends Component{
 
     if(this.props.selectedDiscount.length){
       const DISCOUNT = this.props.selectedDiscount.map((v,i) => {
-        const PRICE = Number(v.rate * 100000).toFixed();
         const RATE = Number(v.rate * 100).toFixed();
-        const PRICE_FORMATTING = Number(PRICE).toLocaleString(navigator.language, { minimumFractionDigits: 0 });
         return (
           <section className={'cursor-none'} key={i}>
             <div className={'items__wrapper cb_clear'}>
               <div className={'name'}><h2>{v.name}</h2></div>
-              <span className={'discountPercent'}>-{PRICE_FORMATTING}원({RATE}%)</span>              
+              <span className={'discountPercent'}>{RATE}% 할인</span>              
               <div className={'items__wrapper__surgery--buttons cb_clear'}>
-                <button className={'modify-discount'} onClick={(()=>{this._modifySelectedDiscount(v,i)})}>수정</button>
+                <button className={'modify-discount'} onClick={(()=>{this._modifySelectedDiscount(v,i)})}>조회 및 적용</button>
               </div>
             </div>            
           </section>
@@ -121,7 +137,7 @@ class Main extends Component{
       })
       results.push(DISCOUNT);
     }
-
+    if(!results.length) results = <section className={'noItems cursor-none'}>시술을 선택해주세요.</section>;
     return results;
   }
 
@@ -182,7 +198,7 @@ class Main extends Component{
     }
 
     if (this.props.loading) {
-      return <main><section className={'noItems'}>Loading...<FontAwesomeIcon icon={faSpinner} spin={true} /></section></main>;
+      return <main><section className={'noItems'}>Loading <FontAwesomeIcon icon={faSpinner} spin={true} /></section></main>;
     }
     
     return(
@@ -197,7 +213,9 @@ const mapDispatchToProps = dispatch => ({
     _handleFetchProducts: () => { dispatch(actions.fetchProducts()) },
     _handleSelectAction: (key,type) => { dispatch(actions.selectAction(key,type)) },
     _handleModifyCount: (key,val) => { dispatch(actions.modifyCount(key,val)) },
-    _handleRemoveSelectedSurgery: (key) => { dispatch(actions.removeSelectedSurgery(key)) }
+    _handleRemoveSelectedSurgery: (key) => { dispatch(actions.removeSelectedSurgery(key)) },
+    _handleApplyDiscount: (index, targetName) => { dispatch(actions.applyDiscount(index, targetName)) },
+    _handleDeleteSelectedDiscount: (index) => { dispatch(actions.deleteSelectedDiscount(index)) }
 })
 
 const mapStateToProps = (state) => {
