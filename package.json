@@ -1,6 +1,6 @@
 {
-  "name": "Colavo-Lab",
-  "description": "Colavo-Lab billing",
+  "name": "colavo-lab",
+  "description": "Colavo-lab billing",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
