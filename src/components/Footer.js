@@ -38,7 +38,7 @@ class Footer extends Component{
               <Button 
                 type="next complete" 
                 text="완료"
-                totalSelected={type === 'surgery' ? this.props.totalSelectedSurgery : undefined} 
+                // totalSelected={type === 'surgery' ? this.props.totalSelectedSurgery : undefined} 
                 click={this._completeSelected}
                 headerType={type}
               />
