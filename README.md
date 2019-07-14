@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> Colavo-lab billing
+> Colavo-lab billing 
 - use create-react-app, redux, redux-thunk , sass
 - deploy with gh-pages
 
