@@ -1,15 +1,15 @@
 {
-  "main.css": "/colavolab-billing/static/css/main.19226115.chunk.css",
-  "main.js": "/colavolab-billing/static/js/main.e145a5ca.chunk.js",
-  "main.js.map": "/colavolab-billing/static/js/main.e145a5ca.chunk.js.map",
-  "runtime~main.js": "/colavolab-billing/static/js/runtime~main.bfdf8704.js",
-  "runtime~main.js.map": "/colavolab-billing/static/js/runtime~main.bfdf8704.js.map",
-  "static/css/2.9a744bc4.chunk.css": "/colavolab-billing/static/css/2.9a744bc4.chunk.css",
-  "static/js/2.b8632daa.chunk.js": "/colavolab-billing/static/js/2.b8632daa.chunk.js",
-  "static/js/2.b8632daa.chunk.js.map": "/colavolab-billing/static/js/2.b8632daa.chunk.js.map",
-  "index.html": "/colavolab-billing/index.html",
-  "precache-manifest.f42773de6618d79fabd2c5c6509dc05a.js": "/colavolab-billing/precache-manifest.f42773de6618d79fabd2c5c6509dc05a.js",
-  "service-worker.js": "/colavolab-billing/service-worker.js",
-  "static/css/2.9a744bc4.chunk.css.map": "/colavolab-billing/static/css/2.9a744bc4.chunk.css.map",
-  "static/css/main.19226115.chunk.css.map": "/colavolab-billing/static/css/main.19226115.chunk.css.map"
+  "main.css": "/drugstore-billing/static/css/main.9bda9d0c.chunk.css",
+  "main.js": "/drugstore-billing/static/js/main.cb64c129.chunk.js",
+  "main.js.map": "/drugstore-billing/static/js/main.cb64c129.chunk.js.map",
+  "runtime~main.js": "/drugstore-billing/static/js/runtime~main.149a31cc.js",
+  "runtime~main.js.map": "/drugstore-billing/static/js/runtime~main.149a31cc.js.map",
+  "static/css/2.7eca4d4e.chunk.css": "/drugstore-billing/static/css/2.7eca4d4e.chunk.css",
+  "static/js/2.b8632daa.chunk.js": "/drugstore-billing/static/js/2.b8632daa.chunk.js",
+  "static/js/2.b8632daa.chunk.js.map": "/drugstore-billing/static/js/2.b8632daa.chunk.js.map",
+  "index.html": "/drugstore-billing/index.html",
+  "precache-manifest.4fd292b5a318bb7c8e87b05d8e2e82ee.js": "/drugstore-billing/precache-manifest.4fd292b5a318bb7c8e87b05d8e2e82ee.js",
+  "service-worker.js": "/drugstore-billing/service-worker.js",
+  "static/css/2.7eca4d4e.chunk.css.map": "/drugstore-billing/static/css/2.7eca4d4e.chunk.css.map",
+  "static/css/main.9bda9d0c.chunk.css.map": "/drugstore-billing/static/css/main.9bda9d0c.chunk.css.map"
 }

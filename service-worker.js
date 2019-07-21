@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/colavolab-billing/precache-manifest.f42773de6618d79fabd2c5c6509dc05a.js"
+  "/drugstore-billing/precache-manifest.4fd292b5a318bb7c8e87b05d8e2e82ee.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/colavolab-billing/index.html", {
+workbox.routing.registerNavigationRoute("/drugstore-billing/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
