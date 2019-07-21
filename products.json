@@ -3,82 +3,82 @@
     "i_1": {
       "count": 1,
       "name": "초코송이",
-      "price": 35000
+      "price": 3500
     },
     "i_2": {
       "count": 1,
       "name": "칸쵸",
-      "price": 30000
+      "price": 3000
     },
     "i_3": {
       "count": 1,
       "name": "오레오",
-      "price": 30000
+      "price": 3000
     },
     "i_4": {
       "count": 1,
       "name": "빼빼로",
-      "price": 100000
+      "price": 2000
     },
     "i_5": {
       "count": 1,
       "name": "오잉",
-      "price": 60000
+      "price": 5000
     },
     "i_6": {
       "count": 1,
       "name": "치토스",
-      "price": 25000
+      "price": 2500
     },
     "i_7": {
       "count": 1,
       "name": "짱구",
-      "price": 60000
+      "price": 6000
     },
     "i_8": {
       "count": 1,
       "name": "스윙칩",
-      "price": 500000
+      "price": 7000
     },
     "i_9": {
       "count": 1,
       "name": "초코파이",
-      "price": 68000
+      "price": 8700
     },
     "i_10": {
       "count": 1,
       "name": "몽쉘",
-      "price": 10000
+      "price": 9500
     },
     "i_11": {
       "count": 1,
       "name": "새우깡",
-      "price": 38000
+      "price": 12000
     },
     "i_12": {
       "count": 1,
       "name": "빅파이",
-      "price": 29000
+      "price": 7500
     },
     "i_13": {
       "count": 1,
       "name": "메가톤",
-      "price": 10000
+      "price": 5200
     },
     "i_14": {
       "count": 1,
       "name": "와",
-      "price": 50000
+      "price": 8800
     },
     "i_15": {
       "count": 1,
       "name": "아이스 아메리카노",
-      "price": 0
+      "price": 5200
     },
     "i_16": {
       "count": 1,
       "name": "아이스 라떼",
-      "price": 10000
+      "price": 6500
     }
   },
   "discounts": {

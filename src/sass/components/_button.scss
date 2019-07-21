@@ -25,25 +25,25 @@ button {
   }
 
   &.discount {
-    background-color: #fdf1f5;
-    color: #ff6095;
+    background-color: #ffd94e;
+    color: #333;
 
     &:hover {
-      background-color: #ffd9e5;
+      background-color: #ffc800;
     }
   }
 
   &.next {
     width: 100%;
-    background: #9885f0;
+    background: #3d8ef3;
     color: #fff;
 
     &.complete {
-      background: #ad9ef0;
+      background: #124cf1;
     }
 
     &:hover {
-      background-color: #735ae8;
+      background-color: #64a9ff;
     }
   }
 }

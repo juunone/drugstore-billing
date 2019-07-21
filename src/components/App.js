@@ -19,7 +19,7 @@ class App extends Component {
           </Fragment>
           ) : (
             <Fragment>
-              <div className={'purchase__process'}><FontAwesomeIcon icon={faSpinner} color={'#ed9ebd'} spin={true} size={'3x'} /><p>결제 진행중입니다...</p></div>
+              <div className={'purchase__process'}><FontAwesomeIcon icon={faSpinner} color={'#333'} spin={true} size={'3x'} /><p>결제 진행중입니다...</p></div>
             </Fragment>
           )
     );
