@@ -5,7 +5,7 @@
   "private": true,
   "license": "MIT",
   "homepage": "https://juunone.github.io/colavolab-billing",
-  "proxy": "https://us-central1-colavolab.cloudfunctions.net",
+  "proxy": "http://localhost:9999",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
@@ -23,6 +23,7 @@
     "scss": "^0.2.4"
   },
   "devDependencies": {
+    "cors": "^2.8.5",
     "redux-logger": "^3.0.6",
     "rimraf": "^2.6.3",
     "sass": "^1.17.2"
@@ -34,7 +35,8 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
-    "clean": "rimraf build"
+    "clean": "rimraf build",
+    "server": "node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

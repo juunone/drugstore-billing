@@ -33,12 +33,12 @@ class Footer extends Component{
       case 'discount':
         return (
           <div className={'footer__wrapper select'}>
-            <p>{type === 'surgery' ? '서비스를 3개 이상 선택해주세요.' : '할인을 선택하세요.'}</p>
+            <p>{type === 'surgery' ? '제품을 2개 이상 선택해주세요.' : '할인을 선택하세요.'}</p>
             <div>
               <Button 
                 type="next complete" 
                 text="완료"
-                // totalSelected={type === 'surgery' ? this.props.totalSelectedSurgery : undefined} 
+                totalSelected={type === 'surgery' ? this.props.totalSelectedSurgery : undefined} 
                 click={this._completeSelected}
                 headerType={type}
               />

@@ -137,7 +137,7 @@ class Main extends Component{
       })
       results.push(DISCOUNT);
     }
-    if(!results.length) results = <section className={'noItems cursor-none'}>시술을 선택해주세요.</section>;
+    if(!results.length) results = <section className={'noItems cursor-none'}>제품을 선택해주세요.</section>;
     return results;
   }
 
@@ -187,7 +187,7 @@ class Main extends Component{
         }
       default:
         return (
-          <section className={'noItems cursor-none'}>시술을 선택해주세요.</section>
+          <section className={'noItems cursor-none'}>제품을 선택해주세요.</section>
         );
     }    
   }

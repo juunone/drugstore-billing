@@ -25,7 +25,7 @@ class Header extends Component{
             <div className={'header__wrapper cb_clear'}>
               <div className={'userName'}>{this.props.userName}</div>
               <div className={'date'}>{this.state.date}</div>
-              <Button type="surgery" text="시술" click={this._getHeaderItems} headerType="surgery" />
+              <Button type="surgery" text="제품" click={this._getHeaderItems} headerType="surgery" />
               <Button type="discount" text="할인" click={this._getHeaderItems} headerType="discount" />
             </div>
           );
@@ -33,7 +33,7 @@ class Header extends Component{
         case 'discount':
           return (
             <div className={'header__wrapper cb_clear br-b-n'}>
-              <i onClick={(()=>{this._getHeaderItems('main')})} className={'ico'}><FontAwesomeIcon icon={faTimes} /></i> <h2>{type === 'surgery' ? '시술메뉴' : '할인'}</h2>
+              <i onClick={(()=>{this._getHeaderItems('main')})} className={'ico'}><FontAwesomeIcon icon={faTimes} /></i> <h2>{type === 'surgery' ? '제품메뉴' : '할인'}</h2>
             </div>  
           );
         default:
@@ -41,7 +41,7 @@ class Header extends Component{
             <div className={'header__wrapper cb_clear'}>
               <div className={'userName'}>{this.props.userName}</div>
               <div className={'date'}>{this.state.date}</div>
-              <Button type="surgery" text="시술" click={this._getHeaderItems} headerType="surgery" />
+              <Button type="surgery" text="제품" click={this._getHeaderItems} headerType="surgery" />
               <Button type="discount" text="할인" click={this._getHeaderItems} headerType="discount" />
             </div>
           );

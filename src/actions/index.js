@@ -81,7 +81,7 @@ export const fetchProductsFailure = error => {
 export function fetchProducts() {
   return dispatch => {
     dispatch(fetchProductsStart());
-    return fetch("/requestAssignmentCalculatorData")
+    return fetch("/products")
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {
