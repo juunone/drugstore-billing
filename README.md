@@ -1,16 +1,16 @@
-<h2 align="center">colavo-lab billing 💸<br />welcome! 👋</h2>
+<h2 align="center">Drug store billing 💸<br />welcome! 👋</h2>
 <p>
   <img src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/juunone/colavolab-billing">
+  <a href="https://github.com/juunone/drugstore-billing">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
 </p>
 
-> Colavo-lab billing 
+> Drug store billing 
 - use create-react-app, redux, redux-thunk , sass
 - deploy with gh-pages
 
-### 🏠 [Homepage](https://juunone.github.io/colavolab-billing)
+### 🏠 [Homepage](https://juunone.github.io/drugstore-billing)
 
 ## Install
 
@@ -18,7 +18,13 @@
 yarn install
 ```
 
-## Usage
+## Server
+
+```sh
+yarn server
+```
+
+## Development
 
 ```sh
 yarn start
@@ -56,6 +62,7 @@ yarn start
     |-- store.js
 |-- package.json
 |-- READEME.md
+|-- server.js
 ```
 
 ## Author
@@ -66,4 +73,4 @@ yarn start
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/juunone/colavolab-billing/issues).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/juunone/drugstore-billing/issues).

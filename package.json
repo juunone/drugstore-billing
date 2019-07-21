@@ -1,10 +1,10 @@
 {
-  "name": "colavo-lab",
-  "description": "Colavo-lab billing",
+  "name": "drug-store",
+  "description": "Drug-store billing",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
-  "homepage": "https://juunone.github.io/colavolab-billing",
+  "homepage": "https://juunone.github.io/drugstore-billing",
   "proxy": "http://localhost:9999",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",

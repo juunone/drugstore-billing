@@ -31,7 +31,7 @@ var readData = function () {
     return defer.promise;
 };
 
-var getCommentsPage = function () {
+var getProducts = function () {
     return readData().then(function (data) {
         return data;
     });
@@ -42,9 +42,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-// list
 app.get('/products', function (req, res) {
-    getCommentsPage().then(function (data) {
+    getProducts().then(function (data) {
         res.json(data);
     }).fail(function (error) {
         console.error(error);
