@@ -1,9 +1,12 @@
 <h2 align="center">Drug store billing 💸<br />welcome! 👋</h2>
 <p>
-  <img src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <img src="https://img.shields.io/badge/version-1.0.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/juunone/drugstore-billing">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
+  <a>
+    <img alt="GitHub" src="https://img.shields.io/github/license/juunone/drugstore-billing.svg">
+  </img>
 </p>
 
 > Drug store billing 
