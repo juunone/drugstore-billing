@@ -10,8 +10,9 @@
 </p>
 
 > Drug store billing 
-- use create-react-app, redux, redux-thunk , sass
-- deploy with gh-pages
+- Use create-react-app, redux, redux-thunk , sass
+- RESTful API server with expressJS
+- Deploy with gh-pages
 
 ### 🏠 [Homepage](https://juunone.github.io/drugstore-billing)
 
